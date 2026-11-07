@@ -17,8 +17,12 @@
 11. [Teste de integração offline](specs/11-teste-integracao.md)
 
 ## Tasks
-- Pendentes: `docs/tasks/`
+- Pendentes: `docs/tasks/` (a task 09, validação com chave real, depende de uma `GOOGLE_API_KEY`)
 - Concluídas: `docs/tasks/done/`
+
+## Validação
+- `uv run pytest`: testes unitários, de integração (Runner real + modelo roteirizado) e de contrato da API.
+- `scripts/fluxo_avaliador.sh`: reproduz os 14 passos do avaliador contra uma API em execução.
 
 ## Pontos em aberto
 - [duvidas.md](duvidas.md): dúvidas e decisões tomadas sem confirmação durante a execução.
