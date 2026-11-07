@@ -104,7 +104,7 @@ Testes (sem chave de API; usam um modelo roteirizado com o `Runner` real do ADK)
 uv run pytest
 ```
 
-Roteiro do fluxo do avaliador contra uma API em execução: `scripts/fluxo_avaliador.sh`.
+Roteiro do fluxo do avaliador contra uma API em execução: `scripts/fluxo_avaliador.sh` (resultado com Gemini real em [docs/evidencia-fluxo-avaliador.md](docs/evidencia-fluxo-avaliador.md)).
 
 Observações de operação:
 
