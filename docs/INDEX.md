@@ -24,6 +24,3 @@
 - `uv run pytest`: testes unitários, de integração (Runner real + modelo roteirizado) e de contrato da API.
 - `scripts/fluxo_avaliador.sh`: reproduz os 14 passos do avaliador contra uma API em execução.
 - [evidencia-fluxo-avaliador.md](evidencia-fluxo-avaliador.md): saída da execução com Gemini real, 0 falhas.
-
-## Pontos em aberto
-- [duvidas.md](duvidas.md): dúvidas e decisões tomadas sem confirmação durante a execução.

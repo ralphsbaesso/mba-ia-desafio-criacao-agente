@@ -19,7 +19,6 @@ Seções, nesta ordem:
 
 ## Documentação
 - `docs/INDEX.md` lista o enunciado, as specs, as tasks e os arquivos de dúvidas.
-- `docs/duvidas.md` registra pontos em aberto.
 
 ## Critérios de aceite
 - Todo caminho citado na seção Garantias existe (`tests/test_readme.py`).
