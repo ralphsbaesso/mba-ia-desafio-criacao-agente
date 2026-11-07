@@ -5,8 +5,8 @@ Um agente principal que conduz a conversa e distribui o trabalho entre três esp
 
 ## Topologia (`aurora/agents/`)
 - `principal` (`LlmAgent`, raiz): recebe o morador, responde saudações e dúvidas simples, e delega. Não tem tools de dados. `sub_agents=[reservas, visitantes]`, `tools=[AgentTool(regulamento)]`.
-- `reservas` (`LlmAgent`, sub-agente via transferência): tools `listar_minhas_reservas`, `verificar_disponibilidade`, `reservar_area`, `cancelar_reserva` e também `AgentTool(regulamento)`. `disallow_transfer_to_peers=True`.
-- `visitantes` (`LlmAgent`, sub-agente via transferência): tools `listar_meus_visitantes`, `autorizar_visitante` e `AgentTool(regulamento)`. `disallow_transfer_to_peers=True`.
+- `reservas` (`LlmAgent`, sub-agente via transferência): tools `listar_minhas_reservas`, `verificar_disponibilidade`, `reservar_area`, `cancelar_reserva` e também `AgentTool(regulamento)`. Pode transferir para o irmão `visitantes` e para `principal` (uma transferência proibida derrubaria o turno com exceção do ADK).
+- `visitantes` (`LlmAgent`, sub-agente via transferência): tools `listar_meus_visitantes`, `autorizar_visitante` e `AgentTool(regulamento)`. Pode transferir para `reservas` e `principal`.
 - `regulamento` (`LlmAgent`, acionado como `AgentTool`): tool `consultar_regulamento(assunto)` (spec 08). Roda em sessão isolada em memória: o texto do capítulo fica na sessão interna e só a resposta final entra na sessão do morador (Garantia 4). A instância do `AgentTool` é compartilhada pelos três agentes.
 - **Fábrica**: `aurora/agents/fabrica.py::criar_agentes(model: str | BaseLlm) -> LlmAgent` constrói a árvore inteira (principal, reservas, visitantes, regulamento e o `AgentTool`) a cada chamada, porque o ADK não permite reutilizar um sub-agente que já tem pai (`base_agent.py`). `aurora/agents/__init__.py` fica vazio (nenhuma árvore é montada na importação; submódulos não importam `aurora.agents`); `aurora/agents/app.py::criar_app(model=None) -> App` chama a fábrica com `model or config.modelo()`. A API e os testes de integração usam `criar_app`.
 
